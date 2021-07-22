@@ -1,4 +1,5 @@
 # mac-on-linux-with-qemu
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Runs macOS on linux with qemu.
 
