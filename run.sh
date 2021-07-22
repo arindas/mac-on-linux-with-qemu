@@ -24,10 +24,10 @@ qcowfilesize=$(stat -c %s macos.qcow2)
 if [ $qcowfilesize -gt 524384 ]; then
   echo "*** Looks like the install was done, launching"
   echo "*** Launch!"
-  exec launch-macos.sh
+  exec ./launch-macos.sh
 else
   echo "*** Looks like the install hasn't been done yet, lets install"
   echo "*** Install!"
-  exec install-macos.sh
+  exec ./install-macos.sh
 fi
 
