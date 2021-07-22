@@ -25,4 +25,4 @@ qemu-system-x86_64 \
     -device vmxnet3,netdev=net0,id=net0 \
     -drive id=ESP,if=virtio,format=qcow2,file=ESP.qcow2 \
     -drive id=InstallMedia,format=raw,if=virtio,file=BaseSystem/BaseSystem.img \
-    -drive id=SystemDisk,if=virtio,file=macos.qcow2
+    -drive id=SystemDisk,if=virtio,file=macos.qcow2 \

@@ -24,4 +24,4 @@ OSK="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
     -netdev user,id=net0 \
     -device vmxnet3,netdev=net0,id=net0 \
     -drive id=ESP,if=virtio,format=qcow2,file=ESP.qcow2 \
-    -drive id=SystemDisk,if=virtio,file=macos.qcow2
+    -drive id=SystemDisk,if=virtio,file=macos.qcow2 \
