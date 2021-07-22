@@ -3,6 +3,8 @@
 
 Runs macOS on linux with qemu.
 
+![screenshot](./assets/screenshot.png)
+
 ## Pre-requisites
 
 - `qemu-system-x86_64`
