@@ -7,6 +7,7 @@ Runs macOS on linux with qemu.
 - `qemu-system-x86_64`
 - `dmg2img`
 - `pulseaudio`
+- `python[click]`
 
 ## Usage
 
