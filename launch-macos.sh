@@ -2,7 +2,7 @@
 
 OSK="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 
-"$SNAP"/usr/bin/qemu-system-x86_64 \
+qemu-system-x86_64 \
     -enable-kvm \
     -m 2G \
     -machine q35,accel=kvm \
