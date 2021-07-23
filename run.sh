@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo "*** Checking for firmware files"
+if [ ! -f firmware/OVMF_VARS-1024x768.fd ]; then
+	mkdir firmware
+	cp -a packaged-firmware/OVMF_VARS-1024x768.fd firmware/
+fi
+
 echo "*** Checking for Base System files"
 if [ ! -f BaseSystem/BaseSystem.img ]; then
 	if python3 fetch-macos.py -o BaseSystem "$@"; then
