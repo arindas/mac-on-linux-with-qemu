@@ -24,10 +24,5 @@ After cloning the repository, simply run `./run.sh`
 - [x] We install macOS to qemu using the given image. `./install-macos.sh`
 - [x] We provide a custom launcher script to launch qemu with the correct settings. `./launch-macos.sh`
 
-## Note
-If you face any problem while installation, remove firmware/ and rename fallback-firmware/ to firmware/
-Once installed, don't change the firmware files. Although they are automatically recovered by a
-installed system.
-
 ## References
 - https://github.com/popey/sosumi-snap
