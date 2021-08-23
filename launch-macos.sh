@@ -19,6 +19,7 @@ qemu-system-x86_64 \
     -drive if=pflash,format=raw,file=firmware/OVMF_VARS-1024x768.fd \
     -device virtio-vga,virgl=on \
     -display sdl,gl=on \
+    -vga std \
     -L /usr/share/seabios/ \
     -L /usr/lib/ipxe/qemu/ \
     -audiodev pa,id=pa,server="/run/user/$(id -u)/pulse/native" \
