@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Bash strict mode, exit on failing command
+set -e
+
 OSK="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
 
 qemu-system-x86_64 \
