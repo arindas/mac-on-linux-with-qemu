@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Bash strict mode, exit on failing command
+set -e
+
 echo "*** Checking for firmware files"
 if [ ! -f firmware/OVMF_VARS-1024x768.fd ]; then
 	mkdir firmware
