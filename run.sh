@@ -10,15 +10,29 @@ if [ ! -f firmware/OVMF_VARS-1024x768.fd ]; then
 fi
 
 echo "*** Checking for Base System files"
-if [ ! -f BaseSystem/BaseSystem.img ]; then
+
+echo "*** Check if dmg2img is available"
+which dmg2img
+
+echo "*** Check if BaseSystem dmg is downloaded. If downloaded convert to img"
+if [ ! -f BaseSystem/BaseSystem.dmg ]; then
+	echo "*** Downloading BaseSystem dmg"
 	if python3 fetch-macos.py -o BaseSystem "$@"; then
-		dmg2img BaseSystem/BaseSystem.dmg BaseSystem/BaseSystem.img
-		# rm BaseSystem/BaseSystem.dmg
+		echo "*** BaseSystem dmg downloaded."
 	else
-		echo "Failed to download base system"
+		echo "Failed to download base system."
 		exit 1
 	fi
-fi	
+fi
+echo "*** BaseSystem dmg available."
+
+echo "*** Check if BaseSystem dmg has been converted to img before."
+if [ ! -f BaseSystem/BaseSystem.img ]; then
+	echo "*** Converting BaseSystem dmg to img."
+	dmg2img BaseSystem/BaseSystem.dmg BaseSystem/BaseSystem.img
+fi
+echo "*** BaseSystem img available."
+
 
 echo "*** Checking for disk image"
 if [ ! -f macos.qcow2 ]; then
