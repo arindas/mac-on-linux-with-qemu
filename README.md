@@ -24,5 +24,12 @@ After cloning the repository, simply run `./run.sh`
 - [x] We install macOS to qemu using the given image. `./install-macos.sh`
 - [x] We provide a custom launcher script to launch qemu with the correct settings. `./launch-macos.sh`
 
+## Closed issues solving relevant tasks
+- [Xcode and usb iphone passthrough for ios App development](https://github.com/arindas/mac-on-linux-with-qemu/issues/25)
+
+## Closed issues solving common problems
+- [archlinux: virtio-vga support lost after qemu and kernel upgrade](https://github.com/arindas/mac-on-linux-with-qemu/issues/24)
+- [Freeze on Big Sur using the new ESP.qcow2 resolved](https://github.com/arindas/mac-on-linux-with-qemu/issues/21)
+
 ## References
 - https://github.com/popey/sosumi-snap
