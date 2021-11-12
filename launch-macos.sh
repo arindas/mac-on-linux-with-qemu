@@ -17,7 +17,7 @@ qemu-system-x86_64 \
     -serial mon:stdio \
     -drive if=pflash,format=raw,readonly,file=packaged-firmware/OVMF_CODE.fd \
     -drive if=pflash,format=raw,file=firmware/OVMF_VARS-1024x768.fd \
-    -device virtio-vga,virgl=on \
+    -device virtio-vga-gl \
     -display sdl,gl=on \
     -vga std \
     -L /usr/share/seabios/ \
