@@ -52,16 +52,15 @@ class Filesystem:
     def fetch_plist(url):
         logging.info("Network Request: %s", "Fetching {}".format(url))
         plist_raw = requests.get(url, headers=ClientMeta.swupdate)
-        plist_data = plist_raw.text.encode('UTF-8')
-        return plist_data
+        return plist_raw.text.encode('UTF-8')
     
     @staticmethod
     def parse_plist(catalog_data):
-        if sys.version_info > (3, 0):
-            root = plistlib.loads(catalog_data)
-        else:
-            root = plistlib.readPlistFromString(catalog_data)
-        return root
+        return (
+            plistlib.loads(catalog_data)
+            if sys.version_info > (3, 0)
+            else plistlib.readPlistFromString(catalog_data)
+        )
 
 class SoftwareService:
     # macOS 10.15 is available in 4 different catalogs from SoftwareScan
@@ -93,20 +92,24 @@ class SoftwareService:
         # Load catalogs based on Py3/2 lib
         root = Filesystem.parse_plist(self.catalog_data)
 
-        # Iterate to find valid OSInstall packages
-        ospackages = []
         products = root['Products']
-        for product in products:
-            if products.get(product, {}).get('ExtendedMetaInfo', {}).get('InstallAssistantPackageIdentifiers', {}).get('OSInstall', {}) == 'com.apple.mpkg.OSInstall':
-                ospackages.append(product)
-                
+        ospackages = [
+            product
+            for product in products
+            if products.get(product, {})
+            .get('ExtendedMetaInfo', {})
+            .get('InstallAssistantPackageIdentifiers', {})
+            .get('OSInstall', {})
+            == 'com.apple.mpkg.OSInstall'
+        ]
+
         # Iterate for an specific version
         candidates = []
         for product in ospackages:
             meta_url = products.get(product, {}).get('ServerMetadataURL', {})
             if self.version in Filesystem.parse_plist(Filesystem.fetch_plist(meta_url)).get('CFBundleShortVersionString', {}):
                 candidates.append(product)
-        
+
         return candidates
 
 
@@ -120,12 +123,8 @@ class MacOSProduct:
     def fetchpackages(self, path, keyword=None):
         Filesystem.check_directory(path)
         packages = self.product['Packages']
-        if keyword:
-            for item in packages:
-                if keyword in item.get("URL"):
-                    Filesystem.download_file(item.get("URL"), item.get("Size"), path)
-        else:
-            for item in packages:
+        for item in packages:
+            if keyword and keyword in item.get("URL") or not keyword:
                 Filesystem.download_file(item.get("URL"), item.get("Size"), path)
 
 @click.command()
